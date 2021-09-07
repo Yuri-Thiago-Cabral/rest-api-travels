@@ -36,7 +36,7 @@ public class CollaboratorService {
         return collaboratorRepository.save(collaborator);
     }
 
-    public void updateCollaborator(Collaborator collaborator) {
+    public void updateCollaborator(Long id, Collaborator collaborator) {
         checkExistence(collaborator);
         collaboratorRepository.save(collaborator);
     }

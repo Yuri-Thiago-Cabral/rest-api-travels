@@ -1,6 +1,5 @@
 package br.com.rest.travelapi.service;
 
-import br.com.rest.travelapi.model.Collaborator;
 import br.com.rest.travelapi.model.Travel;
 import br.com.rest.travelapi.model.enums.TravelStatus;
 import br.com.rest.travelapi.repository.TravelRepository;
@@ -29,7 +28,7 @@ public class TravelService {
         if (travel.isPresent()) {
             return travel;
         } else {
-            throw new ResourceNotFoundException("Viagem com id " + id + " Não encontrada");
+            throw new ResourceNotFoundException("Viagem com id " + id + " não encontrada");
         }
     }
 
@@ -39,7 +38,7 @@ public class TravelService {
         return travelRepository.save(travel);
     }
 
-    public void updateTravel(Travel travel) {
+    public void updateTravel(Long id, Travel travel) {
         checkExistence(travel);
         travelRepository.save(travel);
     }
@@ -53,7 +52,7 @@ public class TravelService {
                 throw new InvalidStatusException("Não é possível deletar viagens em andamento");
             }
         } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException("Viagem com id " + id + " Não encontrada");
+            throw new ResourceNotFoundException("Viagem com id " + id + " não encontrada");
         }
     }
 

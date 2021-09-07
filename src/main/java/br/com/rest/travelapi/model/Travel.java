@@ -1,11 +1,11 @@
 package br.com.rest.travelapi.model;
 
 import br.com.rest.travelapi.model.enums.TravelStatus;
-import br.com.rest.travelapi.service.TravelService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Entity
 public class Travel {
@@ -24,12 +24,18 @@ public class Travel {
 
     @OneToOne
     @JoinColumn(name = "id_collaborator")
-
     @NotNull @NotEmpty
     private Collaborator collaborator;
 
     public Travel() {
         this.status = TravelStatus.MARCADA;
+    }
+
+    public Travel(String startingLocation, String destinyLocation, Collaborator collaborator) {
+        this.status = TravelStatus.MARCADA;
+        this.startingLocation = startingLocation;
+        this.destinyLocation = destinyLocation;
+        this.collaborator = collaborator;
     }
 
     public Long getId() {

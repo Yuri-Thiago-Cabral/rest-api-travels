@@ -1,18 +1,10 @@
-package br.com.rest.travelapi.model;
+package br.com.rest.travelapi.controller.dto.formDto;
 
+import br.com.rest.travelapi.model.Collaborator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-@Entity
-public class Collaborator {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CollaboratorFormDto {
 
     @NotNull @NotEmpty
     private String name;
@@ -21,22 +13,6 @@ public class Collaborator {
     private String surname;
 
     private String phone;
-
-    public Collaborator() {}
-
-    public Collaborator(String name, String surname, String phone) {
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -60,5 +36,9 @@ public class Collaborator {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Collaborator convert() {
+        return new Collaborator(name, surname, phone);
     }
 }
